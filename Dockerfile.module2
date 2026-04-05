@@ -6,7 +6,7 @@ WORKDIR /app
 COPY module2/ /app
 
 # Installs the specific libraries needed for Module 2
-RUN pip install flask pandas requests
+RUN pip install --no-cache-dir flask pandas requests
 
 # Module 2 runs on port 5001 to avoid conflict with Module 1
 EXPOSE 5001
