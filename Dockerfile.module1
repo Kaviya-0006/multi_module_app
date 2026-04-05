@@ -1,0 +1,11 @@
+FROM python:3.10
+
+WORKDIR /app
+
+COPY module1/ /app
+
+RUN pip install flask flask_sqlalchemy
+
+EXPOSE 5000
+
+CMD ["python", "app.py"]

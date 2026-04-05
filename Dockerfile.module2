@@ -1,0 +1,11 @@
+FROM python:3.10
+
+WORKDIR /app
+
+COPY module2/ /app
+
+RUN pip install flask pandas requests
+
+EXPOSE 5001
+
+CMD ["python", "app.py"]k8
