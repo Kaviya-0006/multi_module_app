@@ -2,14 +2,8 @@ FROM python:3.10
 
 WORKDIR /app
 
-# Copies your advanced features (Reports, Analytics, etc.) into the container
 COPY module2/ /app
 
-# Installs the specific libraries needed for Module 2
-RUN pip install --no-cache-dir flask pandas requests
+RUN pip install flask==2.2.5 werkzeug==2.2.3 pandas requests
 
-# Module 2 runs on port 5001 to avoid conflict with Module 1
-EXPOSE 5001
-
-# The correct command to start the service
 CMD ["python", "app.py"]
