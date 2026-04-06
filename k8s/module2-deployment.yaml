@@ -1,24 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
-
 metadata:
   name: module2-deployment
-
 spec:
   replicas: 1
-
   selector:
     matchLabels:
       app: module2
-
   template:
     metadata:
       labels:
         app: module2
-
     spec:
       containers:
       - name: module2
         image: module2-image
+        imagePullPolicy: Never
         ports:
         - containerPort: 5001
