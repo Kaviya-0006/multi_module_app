@@ -5,7 +5,7 @@ pipeline {
 
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/Kaviya-0006/multi_module_app.git'
+                git branch: 'main', url: 'https://github.com/Kaviya-0006/multi_module_app.git'
             }
         }
 
@@ -21,11 +21,19 @@ pipeline {
             }
         }
 
-        stage('Run Containers') {
-            steps {
-                bat 'docker run -d -p 5000:5000 module1-image'
-                bat 'docker run -d -p 6001:6001 module2-image'
-            }
+        stage('Deploy to Kubernetes') {
+    steps {
+        bat "kubectl --kubeconfig=C:\\jenkins_k8s\\config config view"
+    }
+}
+    }
+
+    post {
+        success {
+            echo 'CI/CD Pipeline executed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed. Please check logs.'
         }
     }
 }
