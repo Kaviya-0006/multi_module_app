@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: module1
-        image: module1-image
-        imagePullPolicy: Never
+        image: kaviya6369/module1-image:v1   # explicitly v1
+        imagePullPolicy: Always
         ports:
         - containerPort: 5000

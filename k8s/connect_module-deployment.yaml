@@ -1,20 +1,21 @@
+# connect-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: module2-deployment
+  name: connect-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: module2
+      app: connect
   template:
     metadata:
       labels:
-        app: module2
+        app: connect
     spec:
       containers:
-      - name: module2
-        image: kaviya6369/module2-image:v2   # explicitly v2
+      - name: connect
+        image: kaviya6369/connect-module:v3
         imagePullPolicy: Always
         ports:
-        - containerPort: 5001
+        - containerPort: 5002

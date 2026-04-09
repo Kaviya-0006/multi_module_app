@@ -1,0 +1,20 @@
+# connect_module/app.py
+from flask import Flask, render_template
+import requests
+
+app = Flask(__name__)
+
+MODULE1_URL = "http://module1-service:5000"
+MODULE2_URL = "http://module2-service:5001"
+
+@app.route("/")
+def home():
+    # Example: call Module1 and Module2 endpoints
+    module1_dashboard = requests.get(f"{MODULE1_URL}/users").text
+    module2_index = requests.get(f"{MODULE2_URL}/").text
+
+    combined_data = f"Module1 Users Page HTML: {module1_dashboard[:100]}...\nModule2 Index Page HTML: {module2_index[:100]}..."
+    return f"<pre>{combined_data}</pre>"
+
+if __name__ == "__main__":
+    app.run(port=5002, debug=True)
