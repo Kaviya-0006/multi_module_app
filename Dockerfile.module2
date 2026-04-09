@@ -1,7 +1,7 @@
 FROM python:3.10
 
 WORKDIR /app
-
+# Set working directory
 COPY module2/ /app
 
 RUN pip install flask==2.2.5 werkzeug==2.2.3 pandas requests

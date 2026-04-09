@@ -1,20 +1,17 @@
-# connect_module/app.py
-from flask import Flask, render_template
-import requests
+# Dockerfile.connect_module
+FROM python:3.10
 
-app = Flask(__name__)
+# Set working directory
+WORKDIR /app
 
-MODULE1_URL = "http://module1-service:5000"
-MODULE2_URL = "http://module2-service:5001"
+# Copy connect module files
+COPY connect_module/ /app
 
-@app.route("/")
-def home():
-    # Example: call Module1 and Module2 endpoints
-    module1_dashboard = requests.get(f"{MODULE1_URL}/users").text
-    module2_index = requests.get(f"{MODULE2_URL}/").text
+# Install dependencies
+RUN pip install --no-cache-dir flask==2.2.5 requests pandas
 
-    combined_data = f"Module1 Users Page HTML: {module1_dashboard[:100]}...\nModule2 Index Page HTML: {module2_index[:100]}..."
-    return f"<pre>{combined_data}</pre>"
+# Expose port for connect module
+EXPOSE 5002
 
-if __name__ == "__main__":
-    app.run(port=5002, debug=True)
+# Run the application
+CMD ["python", "app.py"]
