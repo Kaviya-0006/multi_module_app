@@ -12,7 +12,6 @@ def home():
     # Call module1 and module2 independently
     users_page = requests.get(f"{MODULE1_URL}/users").text
     module2_index = requests.get(f"{MODULE2_URL}/").text
-
     combined = f"Module1 Users Preview:\n{users_page[:200]}...\n\nModule2 Index Preview:\n{module2_index[:200]}..."
     return f"<pre>{combined}</pre>"
 
